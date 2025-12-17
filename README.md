@@ -1,2 +1,4 @@
-# neochan
-Unofficial Neocities chan.
+# Neochan
+Where Neocities engages.
+
+Work in Progress.
