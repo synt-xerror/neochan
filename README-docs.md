@@ -1,263 +1,217 @@
-# Regras do Jogo
-Aviso prévio: se você é de fora e não faz parte do projeto, basicamente isso é a forma de comunicação dos desenvolvedores, motivo esse pela qual se encontra em português.
+# Regras do repositório `docs/`
 
-Esse arquivo contém as regras do repositório, que devem ser seguidas para uma melhor organização na comunicação.
+Este diretório contém a **comunicação técnica e organizacional** do projeto.
+Não é um chat, não é um fórum, não é lugar para código grande.
 
-# 1️⃣ Identificação das pessoas (obrigatório)
+O objetivo é:
 
-### Objetivo
-
-* saber **quem escreveu o quê**
-* manter histórico limpo
-* evitar “quem foi mesmo que decidiu isso?”
+* manter histórico claro
+* registrar decisões importantes
+* reduzir ruído
+* permitir que qualquer pessoa entenda o projeto no futuro
 
 ---
 
-## Padrão de identidade no Git
+## Idioma
 
-Cada pessoa deve configurar **nome e email fixos**:
+A comunicação em `docs/` é feita em **português**.
+Este diretório é voltado para quem participa do projeto.
+
+---
+
+## Estrutura oficial
+
+```text
+docs/
+├── README-docs.md      # este arquivo
+├── assinaturas.txt     # identificação das pessoas
+├── ideas.md            # ideias abertas
+├── questions.md        # dúvidas abertas
+├── todo.md             # tarefas práticas
+├── architecture.md     # visão geral do sistema
+└── decisions/          # decisões estruturais (ADR)
+```
+
+Não criar novos arquivos sem consenso.
+
+---
+
+## Identificação das pessoas (obrigatório)
+
+### Git
+
+Cada pessoa deve usar **nome e email consistentes** no Git.
+O email pode ser específico do projeto.
 
 ```bash
-git config --global user.name "Pedro"
-git config --global user.email "pedro@email.com"
+git config --global user.name "Nome Sobrenome"
+git config --global user.email "nome@projeto.org"
 ```
 
-## Assinatura dentro dos arquivos
+### Assinatura nos documentos
 
-Toda entrada relevante em `docs/` termina com assinatura simples:
+Toda entrada relevante termina com assinatura simples:
 
 ```md
-— Pedro (2025-01-12)
+— Nome (YYYY-MM-DD)
 ```
 
-Nada de apelido aleatório.
-Nada de emoji.
-Nada de conversa solta.
-
-Lembre-se de colocar a data no padrão internacional ISO 8601 (YYYY-MM-DD)
+* usar data ISO 8601
+* sem apelidos
+* sem emojis
+* sem conversa informal
 
 ---
 
-# 2️⃣ Organização dos arquivos (regra rígida)
+## Regra global de edição
 
-## Arquivos fixos
-
-```
-/docs
- ├── ideas.md        # ideias abertas
- ├── questions.md    # dúvidas abertas
- ├── decisions.md    # decisões fechadas
- ├── todo.md         # tarefas práticas
- └── README-docs.md  # regras do jogo
-```
-
-Não criar arquivos novos sem consenso.
-
----
-
-# 3️⃣ Estrutura INTERNA dos arquivos
-
-## Regra de ouro
-
-> **Coisas novas SEMPRE entram no TOPO do arquivo**
+> **Conteúdo novo entra sempre no topo do arquivo**
 
 Motivo:
 
-* o que importa agora está visível
-* histórico vai ficando pra baixo
+* o que importa agora fica visível
+* histórico permanece preservado
 
 ---
 
-## `ideas.md`
+## Papel de cada arquivo
+
+### `ideas.md`
+
+* ideias ainda não decididas
+* propostas iniciais
+* pensamento cru
+
+Formato:
+
+* uma ideia por seção
+* separador obrigatório `---`
+
+---
+
+### `questions.md`
+
+* dúvidas reais
+* pontos em aberto
+
+Quando resolvida:
+
+* marcar como `(RESOLVIDO)`
+* **não apagar**
+
+---
+
+### `todo.md`
+
+* tarefas objetivas
+* cada tarefa deve ter responsável
 
 ```md
-# Ideias em aberto
-
-## Estrutura de boards
-- Boards como dados no banco
-- Começar apenas com /t/
-
-— Pedro (2025-01-12)
-
----
-## Upload de imagens
-- Não no MVP
-
-— João (2025-01-11)
-```
-
-📌 Separador obrigatório:
-
-```
----
-```
-
----
-
-## `questions.md`
-
-```md
-# Dúvidas em aberto
-
-## Boards
-- Boards podem ser desativadas?
-- Precisam de descrição?
-
-— João (2025-01-12)
-```
-
-Quando a dúvida for resolvida:
-
-* **Marque como "(RESOLVIDO)"**
-* Não apague.
-
-```md
-# Dúvidas em aberto
-
-## Boards (RESOLVIDO)
-- Boards podem ser desativadas?
-- Precisam de descrição?
-
-— João (2025-01-12)
-```
-
----
-
-## `decisions.md` (o mais importante)
-
-```md
-# Decisões do projeto
-
-## 2025-01-12 — Estrutura de boards
-Decidido:
-- Boards são dados no banco
-- URL padrão /{board}/
-- Apenas /t/ no MVP
-
-Motivo:
-- Menos complexidade
-- Facilita crescimento
-
-— Pedro, João
-```
-
-📌 Aqui:
-
-* ninguém “discute”
-* só se **registra o que já foi decidido**
-
----
-
-## `todo.md`
-
-```md
-# TODO
-
 - [ ] Criar schema do banco (Pedro)
-- [ ] Criar rota /{board}/ (João)
-- [ ] Criar formulário de post (João)
 ```
 
-Coloque o nome para identificar quem é o dono da tarefa.
-Quando a tarefa for concluída, é só remover.
+Quando concluída, remover.
 
 ---
 
-# 4️⃣ Padrão de commit (ESSENCIAL)
+### `architecture.md`
 
-## 📌 Formato obrigatório
+* descreve o **estado atual** do sistema
+* visão geral dos componentes
+* não registra discussões
+* não explica decisões históricas
+
+Mudanças estruturais devem ser refletidas aqui **após** uma decisão formal.
+
+---
+
+### `decisions/` (ADR)
+
+Contém **decisões arquiteturais importantes**.
+
+Cada arquivo representa **uma decisão fechada**.
+
+Formato recomendado:
+
+```text
+0001-titulo-curto.md
+```
+
+Regras:
+
+* decisão clara
+* contexto mínimo
+* consequências explícitas
+* não editar depois de aceita
+
+Se algo mudar no futuro:
+
+* criar um novo ADR
+
+---
+
+## Fluxo oficial de informação
+
+```text
+idea → dúvida → decisão (ADR) → arquitetura
+```
+
+* ideias nascem em `ideas.md`
+* incertezas vão para `questions.md`
+* decisões estruturais viram ADR
+* `architecture.md` reflete o resultado
+
+---
+
+## Padrão de commit (obrigatório)
+
+Formato:
 
 ```
 <área>: <ação curta>
 ```
 
-### Exemplos bons
+Exemplos válidos:
 
 ```
-docs questions: adicionar dúvidas sobre boards
-docs decisions: registrar decisão sobre MVP
-docs todo: adicionar tarefas iniciais
+docs: adicionar ADR sobre boards
+docs ideas: nova proposta de moderação
+docs architecture: atualizar fluxo de dados
 ```
 
-### Exemplos proibidos ❌
+Exemplos inválidos:
 
 ```
-acho que isso resolve
-conversa com o joão
-testando coisas
+update
+testando
+conversa
 ```
 
-### "E se for mais de uma alteração?"
-
-## Formato:
-```
-<área(s)>: <quantas alterações>
-
-<descrição constanto o que alterou>
-```
-
-## Exemplo:
-```
-docs, index.html: 2 alterações, 1 alteração.
-
-ideas.md:
-    - adicionar ideia de tela de login
-
-questions.md:
-    - adicionar dúvida sobre a board /t/
-
-index.html:
-    - remover tag desnecessária no head
-```
-
-Dica: uma alteração apenas, usar o `git commit -m "<alteração>"`, para mais alterações usar apenas o `git commit` (editor built-in do Git).
+Evitar commits com múltiplos objetivos.
 
 ---
 
-## Regra mental do commit
+## O que é proibido
 
-> Se o commit não responde **“o que mudou e por quê”**, ele está errado.
-
----
-
-# 5️⃣ O que É PROIBIDO enviar
-
-Isso é importante pra manter sanidade:
-
-❌ desabafo<br>
-❌ opinião sem contexto<br>
-❌ mensagens curtas tipo chat<br>
-❌ “kkk”, “acho”, “talvez”<br>
-❌ código grande em `docs/`
+* desabafo
+* conversa de chat
+* opinião sem contexto
+* texto vago
+* código grande em `docs/`
 
 ---
 
-# 6️⃣ O que É PERMITIDO (e incentivado)
+## O que é esperado
 
-✅ ideias bem descritas<br>
-✅ dúvidas objetivas<br>
-✅ decisões claras<br>
-✅ listas simples<br>
-✅ texto curto e direto
-
----
-
-# 7️⃣ Regra final
-
-- Não usamos chat para decisões
-- Tudo importante vai para docs/
-- Coisas novas entram no topo
-- Decisão sempre vira registro
-- Commit explica a mudança
+* texto curto e direto
+* ideias bem descritas
+* dúvidas objetivas
+* decisões claras
+* histórico preservado
 
 ---
 
-## Resultado disso tudo
+## Regra final
 
-* ninguém se perde
-* iniciante aprende a pensar estruturado
-* projeto ganha memória
-* menos retrabalho
-* menos stress
-
-Bacana demais.
+Se não ajuda alguém a entender o projeto no futuro,
+**não pertence ao `docs/`**.
